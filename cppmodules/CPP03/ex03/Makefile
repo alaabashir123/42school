@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/03/12 10:16:45 by abashir           #+#    #+#              #
+#    Updated: 2024/03/12 10:16:46 by abashir          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = diamondtrap
 
 SRC = main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp

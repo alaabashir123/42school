@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/12 10:07:14 by abashir           #+#    #+#             */
+/*   Updated: 2024/03/17 12:30:42 by abashir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "FragTrap.hpp"
 
 int main( void )
 {
-    FragTrap ash( "Ash" );
-    FragTrap ash2( ash );
+    FragTrap me( "me" );
+    FragTrap someone( me );
 
-    ash.attack( "the air" );
-    ash.takeDamage( 10 );
-    ash.beRepaired( 10 );
-    ash.highFiveGuys();
+    me.attack( "the stone" );
+    me.takeDamage( 90 );
+    me.beRepaired( 10 );
+    me.highFiveGuys();
 
     return (1);
 }

@@ -1,4 +1,17 @@
-#pragma once
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/12 10:00:14 by abashir           #+#    #+#             */
+/*   Updated: 2024/03/17 11:46:25 by abashir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 #include <iostream>
 
@@ -8,7 +21,7 @@ class ClapTrap
         std::string _name;
         int _hitPoints;
         int _energyPoints;
-        int _attackPoints;
+        int _attackDamage;
         ClapTrap();
     public:
         ClapTrap(std::string name);
@@ -19,3 +32,5 @@ class ClapTrap
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);        
 };
+
+#endif

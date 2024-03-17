@@ -1,20 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/12 10:16:40 by abashir           #+#    #+#             */
+/*   Updated: 2024/03/17 12:54:10 by abashir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 int main( void )
 {
-    DiamondTrap ash( "Ash" );
-    DiamondTrap ash2( ash );
-    DiamondTrap ash3(".");
+    DiamondTrap me( "me" );
 
-    ash.whoAmI();
-    ash2.whoAmI();
-    ash3 = ash;
-    ash3.whoAmI();
+    me.whoAmI();
 
-    ash.attack( "the air" );
-    ash.takeDamage( 10 );
-    ash.beRepaired( 10 );
+    me.attack( "the air" );
+    me.takeDamage( 10 );
+    me.beRepaired( 10 );
+    me.guardGate();
+    me.highFiveGuys();
 
     return (1);
 }

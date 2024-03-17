@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/12 10:00:18 by abashir           #+#    #+#             */
+/*   Updated: 2024/03/17 11:56:36 by abashir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
 
 int main( void )
 {
-    ScavTrap ash( "Ash" );
-    ScavTrap ash2( ash );
+    ScavTrap me( "me" );
+    ScavTrap someone( me );
 
-    ash.attack( "the air" );
-    ash.takeDamage( 10 );
-    ash.beRepaired( 10 );
-    ash.guardGate();
+    me.attack( "the stone" );
+    me.takeDamage( 10 );
+    me.beRepaired( 10 );
+    me.guardGate();
 
     return (1);
 }
