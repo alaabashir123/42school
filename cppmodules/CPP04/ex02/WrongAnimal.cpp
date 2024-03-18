@@ -20,18 +20,20 @@ WrongAnimal::~WrongAnimal()
 {
     std::cout << "WrongAnimal destructor is called" << std::endl;  
 }
-WrongAnimal::WrongAnimal(std::string type) : _type(type)
+WrongAnimal::WrongAnimal(const std::string &type): _type(type)
 {
     std::cout << "WrongAnimal constructor is called" << std::endl;
     
 }
 WrongAnimal::WrongAnimal(WrongAnimal const &copy)
 {
+    std::cout << "WrongAnimal copy constructor is called" << std::endl;
     *this = copy;
 }
 WrongAnimal & WrongAnimal::operator=(WrongAnimal const &rhs)
 {
-    this->_type = rhs._type;
+    if (this != &rhs)
+        this->_type = rhs._type;
     return (*this);
 }
 void WrongAnimal::makeSound() const

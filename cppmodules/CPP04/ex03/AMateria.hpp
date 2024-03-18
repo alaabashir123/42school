@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 15:32:06 by abashir           #+#    #+#             */
-/*   Updated: 2024/03/18 14:25:06 by abashir          ###   ########.fr       */
+/*   Created: 2024/03/17 15:34:04 by abashir           #+#    #+#             */
+/*   Updated: 2024/03/18 10:23:57 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 #include <iostream>
+#include "ICharacter.hpp"
 
-class WrongAnimal
+class ICharacter;
+
+class AMateria
 {
     protected:
         std::string _type;
+
     public:
-        WrongAnimal();
-        ~WrongAnimal();
-        WrongAnimal(const std::string &type);
-        WrongAnimal(WrongAnimal const &copy);
-        WrongAnimal &operator=(WrongAnimal const &rhs);
-        void makeSound() const;
-        std::string getType() const;
+        AMateria();
+        AMateria(std::string const &type);
+        virtual ~AMateria();
+        AMateria(const AMateria &copy);
+        AMateria &operator=(const AMateria &rhs);
+        std::string const & getType() const; //Returns the materia type
+        virtual AMateria* clone() const = 0;
+        virtual void use(ICharacter& target);
 };
 
 #endif

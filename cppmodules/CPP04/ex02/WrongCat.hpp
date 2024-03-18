@@ -6,11 +6,12 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:39 by abashir           #+#    #+#             */
-/*   Updated: 2024/02/14 15:34:06 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/17 13:22:34 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
 #include "WrongAnimal.hpp"
 
@@ -23,3 +24,5 @@ class WrongCat : public WrongAnimal
         WrongCat &operator=(WrongCat const &rhs);
         void makeSound() const;
 };
+
+#endif

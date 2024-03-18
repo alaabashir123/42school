@@ -6,11 +6,12 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 18:11:33 by abashir           #+#    #+#             */
-/*   Updated: 2024/02/14 15:56:17 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/17 13:22:00 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef CAT_HPP
+# define CAT_HPP
 
 #include "Animal.hpp"
 #include "Brain.hpp"
@@ -26,3 +27,5 @@ class Cat : public Animal
         Cat &operator=(Cat const &rhs);
         void makeSound() const;
 };
+
+#endif

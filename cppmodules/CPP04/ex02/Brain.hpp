@@ -6,11 +6,12 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:46:47 by abashir           #+#    #+#             */
-/*   Updated: 2024/02/14 16:17:00 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/17 13:21:51 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 #include <iostream>
 
@@ -24,3 +25,5 @@ class Brain
         Brain(Brain const &copy);
         Brain &operator=(Brain const &rhs);
 };
+
+#endif
