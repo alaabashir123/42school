@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:34:27 by abashir           #+#    #+#             */
-/*   Updated: 2024/03/18 14:28:52 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:06:49 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
 {
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
+    src->learnMateria(new Cure());    
     ICharacter* me = new Character("me");
     AMateria* tmp;
     tmp = src->createMateria("ice");

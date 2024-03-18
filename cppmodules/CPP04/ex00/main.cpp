@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:57:57 by abashir           #+#    #+#             */
-/*   Updated: 2024/03/17 14:40:54 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/18 15:01:56 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ int	main(void)
     delete  wrongCat;
 	std::cout << std::endl;
 
+    const WrongCat *wrongCat2 = new WrongCat();
+    std::cout << "WrongCat2 Type: " << wrongCat2->getType() << std::endl;
+    wrongCat2->makeSound();
+    delete  wrongCat2;
+	std::cout << std::endl;
 }

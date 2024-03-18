@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 17:04:59 by abashir           #+#    #+#             */
-/*   Updated: 2024/03/18 11:33:19 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:05:49 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Character : public ICharacter
 {
     private:
-        AMateria* _inventroy[4];
+        AMateria* _inventory[4];
         AMateria* _unused[4];
         std::string _name;
     public:

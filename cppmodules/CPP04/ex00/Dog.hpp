@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:20:04 by abashir           #+#    #+#             */
-/*   Updated: 2024/03/17 13:20:21 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:59:23 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Dog : public Animal
         ~Dog();
         Dog(Dog const &copy);
         Dog &operator=(Dog const &rhs);
-        void makeSound() const;
+        virtual void makeSound() const;
 };
 
 #endif

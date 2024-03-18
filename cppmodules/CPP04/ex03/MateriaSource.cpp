@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:01:39 by abashir           #+#    #+#             */
-/*   Updated: 2024/03/18 14:31:33 by abashir          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:05:49 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ MateriaSource::MateriaSource(const MateriaSource &copy)
 		if (copy._inventory[i])
 			_inventory[i] = copy._inventory[i]->clone();
 	}
+    
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &rhs)
@@ -67,6 +68,14 @@ void MateriaSource::learnMateria(AMateria*m)
     }
     for (int i = 0; i < 4; i++)
     {
+        if (_inventory[i] == m)
+        {
+            std::cout << "You have already stored this materia!" << std::endl;
+            return;
+        }
+    }
+    for (int i = 0; i < 4; i++)
+    {
         if (!_inventory[i])
         {
             _inventory[i] = m;
@@ -74,7 +83,7 @@ void MateriaSource::learnMateria(AMateria*m)
             return;
         }
     }
-    std::cout << "Inventroy is full!" << std::endl;
+    std::cout << "inventory is full!" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)

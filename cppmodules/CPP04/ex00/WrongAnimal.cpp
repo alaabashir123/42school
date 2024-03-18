@@ -22,7 +22,7 @@ WrongAnimal::~WrongAnimal()
 }
 WrongAnimal::WrongAnimal(const std::string &type): _type(type)
 {
-    std::cout << "WrongAnimal constructor is called" << std::endl;
+    std::cout << "WrongAnimal Type constructor is called" << std::endl;
     
 }
 WrongAnimal::WrongAnimal(WrongAnimal const &copy)
