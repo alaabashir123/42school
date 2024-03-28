@@ -6,7 +6,7 @@
 #    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 15:10:24 by abashir           #+#    #+#              #
-#    Updated: 2024/03/28 15:14:39 by abashir          ###   ########.fr        #
+#    Updated: 2024/03/28 16:00:11 by abashir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ else
 
 	# WordPress Installation
     wp core install --url="https://localhost/" --title="Hello World" --admin_user="${MYSQL_USER}" --admin_password="${MYSQL_PASSWORD}" --admin_email="${WP_EMAIL}" --path=/var/www/html/ --allow-root
-	wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD} --allow-root
+	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD}
 
 	# Check if WordPress installed successfully
     if [ $? -eq 0 ]; then
