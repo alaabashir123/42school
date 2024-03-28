@@ -1,29 +1,41 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    create_wordpress.sh                                :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/03/28 15:10:24 by abashir           #+#    #+#              #
+#    Updated: 2024/03/28 15:14:39 by abashir          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!/bin/sh
 
-#check if wp-config.php exist
+# Check if wp-config.php exist
 if [ -f ./wp-config.php ]
 then
 	echo "wordpress already downloaded"
 else
-
-####### MANDATORY PART ##########
-
-	#Download wordpress and all config file
+	# Download wordpress and all config file
 	wget http://wordpress.org/latest.tar.gz
 	tar xfz latest.tar.gz
 	mv wordpress/* .
 	rm -rf latest.tar.gz
 	rm -rf wordpress
 
-	#Inport env variables in the config file
+	# Import env variables in the config file
 	sed -i "s/username_here/$MYSQL_USER/g" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
 	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
 	cp wp-config-sample.php wp-config.php
 
+	# WordPress Installation
     wp core install --url="https://localhost/" --title="Hello World" --admin_user="${MYSQL_USER}" --admin_password="${MYSQL_PASSWORD}" --admin_email="${WP_EMAIL}" --path=/var/www/html/ --allow-root
-	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD}
+	wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD} --allow-root
+
+	# Check if WordPress installed successfully
     if [ $? -eq 0 ]; then
         echo "WordPress installed successfully."
     else
