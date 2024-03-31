@@ -47,6 +47,18 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - network
+    
+  static-website:
+    container_name: 'static-website'
+    build:
+      context: ./requirements/bonus/static-website
+      dockerfile: Dockerfile
+    image: static-website
+    restart: on-failure
+    networks:
+      - network
+    ports:
+      - "80:80"
 
 networks:
   network:
