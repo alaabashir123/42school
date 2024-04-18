@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:30:12 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/17 17:57:46 by abashir          ###   ########.fr       */
+/*   Updated: 2024/04/18 11:47:53 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int main()
     {
         std::cerr << e.what() << '\n';
     }
-    
     std::list<int>    randArray(20);
     std::srand(time (NULL));
     std::generate(randArray.begin(), randArray.end(), std::rand);

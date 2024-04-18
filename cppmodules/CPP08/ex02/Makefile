@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/17 15:31:09 by abashir           #+#    #+#              #
-#    Updated: 2024/04/18 11:50:04 by abashir          ###   ########.fr        #
+#    Created: 2024/04/18 11:50:10 by abashir           #+#    #+#              #
+#    Updated: 2024/04/18 12:43:48 by abashir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = span
+NAME = stack
 
-SRC = Span.cpp main.cpp 
+SRC = main.cpp 
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -32,5 +32,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
