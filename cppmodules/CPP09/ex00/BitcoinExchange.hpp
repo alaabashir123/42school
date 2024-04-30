@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 15:35:13 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/30 14:43:01 by abashir          ###   ########.fr       */
+/*   Updated: 2024/04/30 15:14:05 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ class BitcoinExchange
         void getDatabase();
         void getUserData();
         void createPair(std::string line);
+        void createResult();
+        double interpolate(std::array<int, 3> date_key);
 };
 #endif
