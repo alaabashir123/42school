@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:20:45 by abashir           #+#    #+#             */
-/*   Updated: 2024/05/01 14:25:34 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:27:01 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <list>
 #include <vector>
 #include <cstdlib>
+#include <ctime>
 
 class invalidInput : public std::exception
 {
