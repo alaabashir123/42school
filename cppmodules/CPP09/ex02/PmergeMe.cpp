@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:25:28 by abashir           #+#    #+#             */
-/*   Updated: 2024/05/06 15:10:52 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/07 12:39:15 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,59 @@ bool checkInt(std::string input)
     return (true);
 }
 
-void checkInput(std::string argv)
+void checkInput(char **argv, int ac)
 {
-    std::istringstream input(argv);
-    std::string x;
-    while (getline(input, x, ' '))
+    for (int i = 1; i < ac; i++)
     {
-        if (x.empty())
-            continue;
-        if (!checkInt(x))
+        if (std::strcmp(argv[i], "") == 0 || std::strcmp(argv[i], " ") == 0)
             throw invalidInput();
+        if (argv[i][0] == ' ')
+        {
+            int j = 0;
+            while (argv[i][j] == ' ')
+                j++;
+            if (argv[i][j] == '\0')
+                throw invalidInput();
+        }
+        std::istringstream input(argv[i]);
+        std::string x;
+        while (getline(input, x, ' '))
+        {
+            if (x.empty())
+                continue;
+            if (!checkInt(x))
+                throw invalidInput();
+        }
     }
 }
 
-void readInput(std::string argv, std::list<int> &lst, std::vector<int> &vec)
+void readInput(char **argv, int ac, std::vector<int> &vec)
 {
-    std::istringstream input(argv);
-    std::string x;
-    while (getline(input, x, ' '))
+    for (int i = 1; i < ac; i++)
     {
-        if (x.empty())
-            continue;
-        lst.push_back(std::atoi(x.c_str()));
-        vec.push_back(std::atoi(x.c_str()));
+        std::istringstream input(argv[i]);
+        std::string x;
+        while (getline(input, x, ' '))
+        {
+            if (x.empty())
+                continue;
+            vec.push_back(std::atoi(x.c_str()));
+        }
+    }
+}
+
+void readInput(char **argv, int ac, std::list<int> &lst)
+{
+    for (int i = 1; i < ac; i++)
+    {
+        std::istringstream input(argv[i]);
+        std::string x;
+        while (getline(input, x, ' '))
+        {
+            if (x.empty())
+                continue;
+            lst.push_back(std::atoi(x.c_str()));
+        }
     }
 }
 
