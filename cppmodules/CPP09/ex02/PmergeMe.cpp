@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:25:28 by abashir           #+#    #+#             */
-/*   Updated: 2024/05/07 12:39:15 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:48:28 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void checkInput(char **argv, int ac)
 {
     for (int i = 1; i < ac; i++)
     {
-        if (std::strcmp(argv[i], "") == 0 || std::strcmp(argv[i], " ") == 0)
+        if (strcmp(argv[i], "") == 0 || strcmp(argv[i], " ") == 0)
             throw invalidInput();
         if (argv[i][0] == ' ')
         {
@@ -85,213 +85,77 @@ void readInput(char **argv, int ac, std::list<int> &lst)
     }
 }
 
-void insertionSort(std::vector<int> &vec, size_t left, size_t right)
-{
-    for (size_t i = left + 1; i <= right; i++)
-    {
-        int key = vec[i];
-        size_t j = i;
-        while (j > left && key < vec[j - 1])
-        {
-            vec[j] = vec[j - 1];
-            j--;
-        }
-        vec[j] = key;
-    }    
+
+
+void insertion_sort_pairs(std::vector<std::pair<int, int> >& pairs, size_t n) {
+    if (n <= 1)
+        return;
+    insertion_sort_pairs(pairs, n - 1);
+    const std::pair<int, int> newPair = pairs[n - 1];
+    size_t i = n - 1;
+    while (i > 0 && pairs[i - 1].second > newPair.second) {
+        pairs[i] = pairs[i - 1];
+        i--;
+    }
+    pairs[i] = newPair;
 }
 
-void merge(std::vector<int> &vec, size_t left, size_t mid, size_t right)
-{
-    size_t sub1_size = mid - left + 1;
-    size_t sub2_size = right - mid;
-    std::vector<int> sub1(sub1_size);
-    std::vector<int> sub2(sub2_size);
-
-    for (size_t i = 0; i < sub1_size; i++)
-        sub1[i] = vec[left + i];
-
-    for (size_t i = 0; i < sub2_size; i++)
-        sub2[i] = vec[mid + 1 + i];
-
-    size_t i = 0;
-    size_t j = 0;
-    size_t k = left;
-
-    while (i < sub1_size && j < sub2_size)
-    {
-        if (sub1[i] <= sub2[j])
-        {
-            vec[k] = sub1[i];
-            i++;
-        }
-        else
-        {
-            vec[k] = sub2[j];
-            j++;
-        }
-        k++;
+void mergeInsertionSort(std::vector<int>& vec) {
+    bool isOdd = false;
+    int straggler;
+    if (vec.size() % 2 != 0) {
+        straggler = vec.back();
+        isOdd = true;
+        vec.pop_back();
     }
-    while (i < sub1_size)
-    {
-        vec[k] = sub1[i];
-        i++;
-        k++;
+    if (vec.size() <= 1)
+        return;
+
+    std::vector<std::pair<int, int> > pairs(vec.size() / 2);
+    for (size_t i = 0; i < vec.size(); i += 2) {
+        pairs[i / 2] = std::make_pair(vec[i], vec[i + 1]);
     }
-    while (j < sub2_size)
-    {
-        vec[k] = sub2[j];
-        j++;
-        k++;
-    }
-}
-
-
-void mergeInsertionSort(std::vector<int> &vec, size_t left, size_t right, size_t k)
-{
-    if (left < right)
-    {
-        if (right - left <= k)
-            insertionSort(vec, left, right);
-        else
-        {
-            int mid = left + (right - left) / 2;
-            mergeInsertionSort(vec, left,  mid, k);
-            mergeInsertionSort(vec, mid + 1, right, k);
-            merge(vec, left, mid, right);
-        }
-    }
-}
-
-void merge(std::list<int> &lst, size_t mid)
-{
-    std::list<int>::iterator it = lst.begin();
-    std::advance(it, mid + 1);
-    std::list<int> sub1(lst.begin(), it);
-
-    std::list<int> sub2;
-    std::list<int>::iterator it_j = it;
-    while (it_j != lst.end()) {
-        sub2.push_back(*it_j);
-        ++it_j;
+    for (size_t i = 0; i < pairs.size(); i++) {
+        if (pairs[i].first > pairs[i].second)
+            std::swap(pairs[i].first, pairs[i].second);
     }
 
-    std::list<int>::iterator it_i = sub1.begin();
-    it_j = sub2.begin();
+    insertion_sort_pairs(pairs, pairs.size());
 
-    lst.clear();
-    while (it_i != sub1.end() && it_j != sub2.end())
-    {
-        if (*it_i <= *it_j)
-        {
-            lst.push_back(*it_i);
-            ++it_i;
-        }
-        else
-        {
-            lst.push_back(*it_j);
-            ++it_j;
-        }
-    } 
-    while (it_i != sub1.end())
-    {
-        lst.push_back(*it_i);
-        ++it_i;
+    std::vector<int> S;
+    std::vector<int> pend;
+    for (size_t i = 0; i < pairs.size(); i++) {
+        S.push_back(pairs[i].second);
+        pend.push_back(pairs[i].first);
     }
-    while (it_j != sub2.end())
-    {
-        lst.push_back(*it_j);
-        ++it_j;
+
+    size_t size = S.size();
+    std::vector<int> j(size + 1);
+    std::vector<int> indexes;
+    j[0] = 0;
+    j[1] = 1;
+    int lastJacobsthalNumber = 2;
+    indexes.push_back(j[1]);
+    for (size_t i = 2; indexes.size() < size + 1; i++) {
+        j[i] = j[i - 1] + 2 * j[i - 2];
+        if (i != 2)
+            indexes.push_back(j[i]);
+
+        for (int k = j[i] - 1; k > lastJacobsthalNumber; k--)
+            indexes.push_back(k);
+
+        lastJacobsthalNumber = j[i];
     }
+
+    for (size_t i = 0; i < pend.size(); i++) {
+        auto it = S.begin() + indexes[i];
+        S.insert(it, pend[i]);
+    }
+
+    for (size_t i = 0; i < indexes.size(); i++)
+        std::cout << " " << indexes[i] << std::endl;
+    for (size_t i = 0; i < S.size(); i++)
+        std::cout << S[i] << " ";
 }
 
 
-
-// void merge(std::list<int> &lst, size_t left, size_t mid, size_t right)
-// {
-//     size_t sub1_size = mid - left + 1;
-//     size_t sub2_size = right - mid;
-//     std::list<int> sub1;
-//     std::list<int> sub2;
-//     std::list<int>::iterator it_i = lst.begin();
-    
-//     for (size_t i = 0; i < sub1_size; i++)
-//     {
-//         sub1.push_back(*it_i);
-//         it_i++;
-//     }
-
-//     for (size_t i = 0; i < sub2_size; i++)
-//     {
-//         sub2.push_back(*it_i); 
-//         it_i++;
-//     }
-//      std::cout << "sub 2 ";
-//     for (std::list<int>::iterator it = sub2.begin(); it != sub2.end(); it++)
-//         std::cout << *it << " ";
-//      std::cout << "sub 1 ";
-//     for (std::list<int>::iterator it = sub1.begin(); it != sub1.end(); it++)
-//         std::cout << *it << " ";
-    
-//     it_i = sub1.begin();
-//     std::list<int>::iterator it_j = sub2.begin();
-//     lst.clear();
-//     while (it_i != sub1.end() && it_j != sub2.end())
-//     {
-//         if (*it_i <= *it_j)
-//         {
-//             lst.push_back(*it_i);
-//             it_i++;
-//         }
-//         else
-//         {
-//             lst.push_back(*it_j);
-//             it_j++;
-//         }
-//     } 
-//     while (it_i != sub1.end())
-//     {
-//         lst.push_back(*it_i);
-//         it_i++;
-//     }
-//     while (it_j != sub2.end())
-//     {
-//         lst.push_back(*it_j);
-//         it_j++;
-//     }
-// }
-
-void insertionSort(std::list<int> &lst)
-{
-    std::list<int>::iterator it_i = lst.begin();
-    it_i++;
-    for (; it_i != lst.end(); ++it_i)
-    {
-        int key = *it_i;
-        std::list<int>::iterator it_j = it_i;
-        std::list<int>::iterator it_temp = it_j;
-        --it_temp;
-        while (it_j != lst.begin() && key < *(it_temp))
-        {
-            *it_j = *(it_temp);
-            --it_j;
-            --it_temp;
-        }
-        *it_j = key;
-    }    
-}
-
-void mergeInsertionSort(std::list<int> &lst, size_t left, size_t right, size_t k)
-{
-    if (left < right)
-    {
-        if (right - left <= k)
-            insertionSort(lst);
-        else
-        {
-            int mid = left + (right - left) / 2;
-            mergeInsertionSort(lst, left,  mid, k);
-            mergeInsertionSort(lst, mid + 1, right, k);
-            merge(lst, mid);
-        }
-    }
-}

@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:20:43 by abashir           #+#    #+#             */
-/*   Updated: 2024/05/07 11:24:37 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/08 13:19:08 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ bool checkInt(std::string input)
     size_t i = 0;
     if (input[i] == '+' || input[i] == '-')
         i++;
+    if (input[i + 1])
+        return (false);
     for (; i < input.length(); i++)
     {
         if ((!isdigit(input[i])))
             return (false);
     }
-    if (std::atoi(input.c_str()) > 9)
+    if (atoi(input.c_str()) > 9)
         return (false);
     return (true);
 }
@@ -74,7 +76,7 @@ void calculateRPN(std::string argv)
         if (x.empty())
             continue;
         if (checkType(x) == 0)
-            st.push(std::atoi(x.c_str()));
+            st.push(atoi(x.c_str()));
         else if (checkType(x) == 1)
         {
             if (st.size() < 2)

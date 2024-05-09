@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:11:26 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/30 16:01:45 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/08 12:36:27 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
     return (*this);
 }
 
+void trim(std::string& str) 
+{
+    str.erase(0, str.find_first_not_of(" \t\r\n"));
+    str.erase(str.find_last_not_of(" \t\r\n") + 1);
+}
+
 void BitcoinExchange::getDatabase()
 {
     std::string line;
@@ -51,18 +57,14 @@ void BitcoinExchange::getDatabase()
     {
         size_t pos = line.find(",");
         std::string key = line.substr(0, pos);
+        trim(key);
         std::string value = line.substr(pos + 1);
-        std::array<int, 3> date = {std::atoi(key.substr(0, 4).c_str()), std::atoi(key.substr(5, 2).c_str()), std::atoi(key.substr(8, 2).c_str())};
+        trim(value);
+        std::string date = key.substr(0, 4) + key.substr(5, 2) + key.substr(8, 2);
         _database.insert(std::make_pair(date, std::atof(value.c_str())));
     }
     if (_database.empty())
         throw checkFile();
-}
-
-void trim(std::string& str) 
-{
-    str.erase(0, str.find_first_not_of(" \t\r\n"));
-    str.erase(str.find_last_not_of(" \t\r\n") + 1);
 }
 
 void BitcoinExchange::createPair(std::string line)
@@ -85,7 +87,7 @@ void BitcoinExchange::createPair(std::string line)
 void BitcoinExchange::getUserData()
 {
     std::string line;
-    std::ifstream input(_file);
+    std::ifstream input(_file.c_str());
     if (!input.is_open())
         throw checkFile();
     if (std::getline(input, line)) 
@@ -169,21 +171,26 @@ int exit_error(int condition, std::string message)
     return (0);
 }
 
-double BitcoinExchange::interpolate(std::array<int, 3> date_key)
+double BitcoinExchange::interpolate(std::string& date_key)
 {
-    std::multimap<std::array<int, 3>, double>::iterator lower = _database.lower_bound(date_key);
+    std::multimap<std::string, double>::iterator lower = _database.lower_bound(date_key);
     if (lower != _database.end())
     {
-        if (lower->first[0] == date_key[0] && lower->first[1] == date_key[1] && lower->first[2] == date_key[2]);
+        if (lower->first == date_key)
+            return lower->second;
         else
         {
             if (lower != _database.begin())
-                lower--;
+                --lower;
         }
     }
-    else
+    else if (lower != _database.begin())
         lower--;
     return lower->second;
+}
+bool BitcoinExchange::isLeapYear(int year)
+{
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
 void BitcoinExchange::createResult()
 {
@@ -197,19 +204,25 @@ void BitcoinExchange::createResult()
             if (it->first[i] == '-')
                 count++;
         }
-        if (exit_error(it->first.size() != 10 || count != 2, "Error: bad input => " + it->first))
+        if (exit_error(it->first.size() != 10 || count != 2 || it->second == "", "Error: bad input => " + it->first))
             continue;
-        std::array<std::string, 3> date = {it->first.substr(0, 4), it->first.substr(5, 2), it->first.substr(8, 2)};
-        if (exit_error(checkType(date[0]) || checkType(date[1]) || checkType(date[2]) || checkType(it->second), "Error: bad input => " + it->first))
+        std::string date[3] = {it->first.substr(0, 4), it->first.substr(5, 2), it->first.substr(8, 2)};
+        if (exit_error(!checkInt(date[0]) || !checkInt(date[1]) || !checkInt(date[2]) || checkType(it->second), "Error: bad input => " + it->first))
             continue;
-        if (exit_error(std::atof(date[1].c_str()) < 1 || std::atof(date[1].c_str()) > 12 || std::atof(date[2].c_str()) < 1 || std::atof(date[2].c_str()) > 31, "Error: bad input => " + it->first))
+        if (exit_error(std::atof(date[0].c_str()) < 2009 || std::atof(date[0].c_str()) > 2022 || std::atof(date[1].c_str()) < 1 || std::atof(date[1].c_str()) > 12 || std::atof(date[2].c_str()) < 1 || std::atof(date[2].c_str()) > 31, "Error: bad input => " + it->first))
             continue;
+        if (exit_error((std::atof(date[1].c_str()) == 4 || std::atof(date[1].c_str()) == 6 || std::atof(date[1].c_str()) == 9 || std::atof(date[1].c_str()) == 11) && std::atof(date[2].c_str()) > 30, "Error: bad input => " + it->first))
+            continue;
+        if (exit_error(std::atof(date[1].c_str()) == 2 && isLeapYear(std::atof(date[0].c_str())) && std::atof(date[2].c_str()) > 29, "Error: bad input => " + it->first))
+            continue;
+        if (exit_error(std::atof(date[1].c_str()) == 2 && !isLeapYear(std::atof(date[0].c_str())) && std::atof(date[2].c_str()) > 28, "Error: bad input => " + it->first))
+            continue;        
         if (exit_error(std::atof(it->second.c_str()) < 0, "Error: not a positive number."))
             continue;
         if (exit_error(std::atof(it->second.c_str()) > 1000, "Error: too large a number."))
             continue;
         std::cout << it->first << " => " << it->second;
-        std::array<int, 3> date_key = {std::atoi(date[0].c_str()), std::atoi(date[1].c_str()), std::atoi(date[2].c_str())};
+        std::string date_key = date[0] + date[1] + date[2];
         std::cout << " = " << interpolate(date_key) * std::atof(it->second.c_str()) << std::endl;
         
     }

@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 15:35:13 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/30 15:14:05 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/08 12:29:14 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 #include <algorithm>
 #include <string>
 #include <map>
-#include <array>
 #include <iterator>
 #include <exception>
 
 class BitcoinExchange
 {
     private:
-        std::multimap<std::array<int, 3>, double> _database;
+        std::multimap<std::string, double> _database;
         std::multimap<std::string, std::string> _data;
         std::string _file;
         BitcoinExchange();
@@ -38,6 +37,7 @@ class BitcoinExchange
         void getUserData();
         void createPair(std::string line);
         void createResult();
-        double interpolate(std::array<int, 3> date_key);
+        double interpolate(std::string &date_key);
+        bool isLeapYear(int year);
 };
 #endif
