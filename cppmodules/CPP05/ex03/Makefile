@@ -6,11 +6,11 @@
 #    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 10:13:58 by abashir           #+#    #+#              #
-#    Updated: 2024/04/15 13:52:41 by abashir          ###   ########.fr        #
+#    Updated: 2024/05/14 17:25:20 by abashir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat
+NAME = intern
 
 SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 

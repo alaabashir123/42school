@@ -6,16 +6,15 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:31:18 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/15 13:28:48 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:57:10 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
-{
-    
-}
+Bureaucrat::Bureaucrat() {}
+Bureaucrat::~Bureaucrat() {}
+
 Bureaucrat::Bureaucrat( const std::string name, int grade) : _name(name), _grade(grade)
 {
     if (grade < 1)
@@ -24,12 +23,8 @@ Bureaucrat::Bureaucrat( const std::string name, int grade) : _name(name), _grade
         throw GradeTooLowException();
 }
 
-Bureaucrat::~Bureaucrat() {}
-
-Bureaucrat::Bureaucrat(const Bureaucrat& copy)
-{
-    *this = copy;
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name), _grade(copy._grade)
+{}
 
 Bureaucrat & Bureaucrat::operator=(Bureaucrat const &rhs)
 {
@@ -61,8 +56,8 @@ void Bureaucrat::incrementGrade()
 
 void Bureaucrat::signForm(AForm &form)
 {
-    if (form.getisSigned())
-        std::cout << _name << " signed " << form.getName() << " already" << std::endl;
+    if (form.getIsSigned())
+        std::cout << "Form is already signed" << std::endl;
     else
     {
         try
@@ -81,15 +76,20 @@ void Bureaucrat::signForm(AForm &form)
 
 void Bureaucrat::executeForm(AForm const & form)
 {
-    try
+    if (form.getIsSigned())
     {
-        form.execute(*this);
-        std::cout << _name << " executed " << form.getName() << std::endl; 
+        try
+        {
+            form.execute(*this);
+            std::cout << _name << " executed " << form.getName() << std::endl; 
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what();
+        }
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what();
-    }
+    else
+        throw AForm::FormNotSignedException();
     
 }
 

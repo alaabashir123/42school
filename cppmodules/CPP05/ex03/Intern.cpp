@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:35:27 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/15 14:02:47 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:29:52 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-Intern::Intern()
-{
-}
-Intern::~Intern()
-{
-}
+Intern::Intern() {}
+Intern::~Intern() {}
 Intern::Intern(const Intern &copy)
 {
     *this = copy;
@@ -32,7 +28,7 @@ Intern &Intern::operator=(const Intern &rhs)
 }
 AForm *Intern::makeForm(std::string formName, std::string target)
 {
-    std::string formNames[] = {"Presidential Pardon Form", "Roboto my Request Form", "Shrubbery Creation Form"};
+    std::string formNames[] = {"presidential request", "robotomy request", "shrubbery creation"};
     AForm *formArray[] = {new PresidentialPardonForm(target), new RobotomyRequestForm(target), new ShrubberyCreationForm(target)};
     AForm *clone = NULL;
 
@@ -47,10 +43,12 @@ AForm *Intern::makeForm(std::string formName, std::string target)
     }
 
     if (clone == NULL)
-        std::cout << "Form not found" << std::endl;
+        std::cout << "Form is not found" << std::endl;
 
     for (int j = 0; j < 3; j++)
-        delete formArray[j];
-
+    {
+        if (formArray[j])
+            delete formArray[j];
+    }
     return clone;
 }

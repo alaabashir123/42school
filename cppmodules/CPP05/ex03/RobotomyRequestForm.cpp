@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 12:58:07 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/15 14:07:04 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:58:37 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
 }
+RobotomyRequestForm::RobotomyRequestForm() : AForm("", 0, 0), _target("")
+{}
 RobotomyRequestForm::~RobotomyRequestForm()
 {}
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AForm(copy) {}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AForm(copy), _target(copy._target) {}
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs)
 {
     if (this != &rhs)
@@ -27,17 +29,22 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &r
 }
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-    srand((unsigned) time(NULL));
-    int random = rand();
-    if (executor.getGrade() < this->getexecuteGrade() && this->getexecuteGrade())
+    if (this->getIsSigned())
     {
-        if (random % 2 == 0)
-            std::cout << "BZZZZZT! " << _target << " has been robotomized successfuly" << std::endl;
+        srand((unsigned) time(NULL));
+        int random = rand();
+        if (executor.getGrade() <= this->getExecuteGrade())
+        {
+            if (random % 2 == 0)
+                std::cout << "BZZZZZT! " << _target << " has been robotomized successfuly" << std::endl;
+            else
+                std::cout << "BZZZZZT! Robotomy failed" << std::endl;
+        }
         else
-            std::cout << "Robotomy failed" << std::endl;
+            throw GradeTooLowException();  
     }
     else
-        throw GradeTooLowException();
+        throw AForm::FormNotSignedException();
 }
 
 RobotomyRequestForm* RobotomyRequestForm::clone()

@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:18:23 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/15 14:06:06 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:56:49 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ class AForm
         AForm& operator=(const AForm &rhs);
         
         std::string getName() const;
-        bool getisSigned() const;
-        int getsignGrade() const;
-        int getexecuteGrade() const;
+        bool getIsSigned() const;
+        int getSignGrade() const;
+        int getExecuteGrade() const;
         virtual void execute(Bureaucrat const & executor) const = 0;
         void beSigned(Bureaucrat &b);
         virtual AForm *clone() = 0;
@@ -53,7 +53,14 @@ class AForm
             {  
                 return "Grade is too low!\n";
             }  
-        };  
+        };
+        class FormNotSignedException : public std::exception
+        {
+            virtual const char * what() const throw()  
+            {  
+                return "Form is not signed!\n";
+            }  
+        }; 
 };
 
 std::ostream& operator<<( std::ostream& o, const AForm& rhs);

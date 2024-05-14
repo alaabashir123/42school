@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:35:56 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/15 14:09:20 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:32:44 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,15 @@ int main( void )
         Intern  someRandomIntern;
         AForm*   rrf;
 
-        // rrf = someRandomIntern.makeForm("robotomy", "Bender");
         rrf = someRandomIntern.makeForm("Presidential Pardon Form", "Bender");
         delete rrf;
     }
+    {
+        Intern  someRandomIntern;
+        AForm*   rrf;
 
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        delete rrf;
+    }
     return 1;
 }

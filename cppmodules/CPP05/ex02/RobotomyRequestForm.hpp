@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 12:56:27 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/15 12:57:48 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/14 14:10:34 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm(const RobotomyRequestForm &copy);
         RobotomyRequestForm &operator=(const RobotomyRequestForm &copy);
         void execute(Bureaucrat const & executor) const;
-        
 };
 
 #endif

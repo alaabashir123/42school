@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:35:56 by abashir           #+#    #+#             */
-/*   Updated: 2024/04/15 11:15:41 by abashir          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:33:55 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main()
 {
     try
     {
-        Bureaucrat c("Alaa", 140);
+        Bureaucrat c("Alaa", 3);
         std::cout << c << std::endl;
         c.incrementGrade();
         std::cout << c << std::endl;
@@ -34,7 +34,7 @@ int main()
     try
     {
         std::cout << "------------------------" << std::endl;
-        Bureaucrat b("Bashir", 1);
+        Bureaucrat b("Bashir", 0);
         std::cout << b << std::endl;
         b.incrementGrade();
     }
