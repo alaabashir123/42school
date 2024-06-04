@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:20:45 by abashir           #+#    #+#             */
-/*   Updated: 2024/06/02 17:45:03 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/04 13:22:55 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <cstring>
+#include <utility>
+#include <iomanip>
 
 class invalidInput : public std::exception
 {

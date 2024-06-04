@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:41:18 by abashir           #+#    #+#             */
-/*   Updated: 2024/06/02 17:47:32 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/04 17:56:12 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,32 @@ int main(int ac, char **argv)
     try
     {
         checkInput(argv, ac);
+        
         clock_t start_vec = clock();
         std::vector<int> vec;
         readInput(argv, ac, vec);
-        if (vec.empty())
+        if (vec.empty() || vec.size() == 1)
         {
             std::cout << "Error" << std::endl;
             return (1);
         }
         std::cout << "Before : ";
-        for (size_t i = 0; i < vec.size(); i++)
-            std::cout << vec[i] << " ";
-        std::cout << std::endl;
+        print(vec);
         std::vector<int> S = mergeInsertionSort(vec);
-        std::cout << "After :  ";
-        for (size_t i = 0; i < S.size(); i++)
-            std::cout << S[i] << " ";
-        std::cout << std::endl;
         clock_t end_vec = clock();
+        
+        std::cout << "After :  ";
+        print(S);
         double elapsedTime_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC;
 
-        // clock_t start_lst = clock();
-        // std::list<int> lst;
-        // readInput(argv, ac, lst);
-        //     if (lst.empty())
-        // {
-        //     std::cout << "Error" << std::endl;
-        //     return (1);
-        // }
+        clock_t start_lst = clock();
+        std::list<int> lst;
+        readInput(argv, ac, lst);
+        if (lst.empty() || lst.size() == 1)
+        {
+            std::cout << "Error" << std::endl;
+            return (1);
+        }
         // // mergeInsertionSort(lst, 0, lst.size() - 1, 2);
         // std::cout << "After :  ";
         // for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
@@ -57,7 +55,8 @@ int main(int ac, char **argv)
         // clock_t end_lst = clock();
         // double elapsedTime_lst = static_cast<double>(end_lst - start_lst) / CLOCKS_PER_SEC;
         // std::cout << std::endl;
-        // std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << elapsedTime_vec << std::endl;
+        std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << std::fixed << std::setprecision(7) << elapsedTime_vec << std::endl;
+
         // std::cout << "Time to process a range of " << vec.size() << " elements with std::list   : " << elapsedTime_lst << std::endl;
     }
     catch(const std::exception& e)
