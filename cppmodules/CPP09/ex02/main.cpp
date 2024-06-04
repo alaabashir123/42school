@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 11:23:11 by abashir           #+#    #+#             */
-/*   Updated: 2024/05/08 14:39:13 by abashir          ###   ########.fr       */
+/*   Created: 2024/06/02 16:41:18 by abashir           #+#    #+#             */
+/*   Updated: 2024/06/02 17:47:32 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char **argv)
     try
     {
         checkInput(argv, ac);
-        // clock_t start_vec = clock();
+        clock_t start_vec = clock();
         std::vector<int> vec;
         readInput(argv, ac, vec);
         if (vec.empty())
@@ -34,13 +34,13 @@ int main(int ac, char **argv)
         for (size_t i = 0; i < vec.size(); i++)
             std::cout << vec[i] << " ";
         std::cout << std::endl;
-        mergeInsertionSort(vec);
-        // std::cout << "After :  ";
-        // for (size_t i = 0; i < vec.size(); i++)
-        //     std::cout << vec[i] << " ";
-        // std::cout << std::endl;
-        // clock_t end_vec = clock();
-        // double elapsedTime_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC;
+        std::vector<int> S = mergeInsertionSort(vec);
+        std::cout << "After :  ";
+        for (size_t i = 0; i < S.size(); i++)
+            std::cout << S[i] << " ";
+        std::cout << std::endl;
+        clock_t end_vec = clock();
+        double elapsedTime_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC;
 
         // clock_t start_lst = clock();
         // std::list<int> lst;

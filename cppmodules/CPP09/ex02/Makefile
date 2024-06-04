@@ -6,7 +6,7 @@
 #    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 11:19:57 by abashir           #+#    #+#              #
-#    Updated: 2024/05/09 14:37:04 by abashir          ###   ########.fr        #
+#    Updated: 2024/06/02 16:49:22 by abashir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ = $(SRC:.cpp=.o)
 
 CXX = c++
 
-CXXFLAGS = #-Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -std=c++98 #-Wall -Wextra -Werror 
 
 all: $(NAME)
 
