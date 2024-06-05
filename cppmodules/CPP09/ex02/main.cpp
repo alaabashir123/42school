@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:41:18 by abashir           #+#    #+#             */
-/*   Updated: 2024/06/04 17:56:12 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/05 17:45:44 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,24 @@ int main(int ac, char **argv)
             std::cout << "Error" << std::endl;
             return (1);
         }
-        // // mergeInsertionSort(lst, 0, lst.size() - 1, 2);
+        std::list<int> S = mergeInsertionSort(lst);
+        clock_t end_lst = clock();
+        
+        std::cout << "After :  ";
+        print(S);
+        double elapsedTime_lst = static_cast<double>(end_lst - start_lst) / CLOCKS_PER_SEC;
+        std::cout << "Time to process a range of " << lst.size() << " elements with std::vector : " << std::fixed << std::setprecision(7) << elapsedTime_lst << std::endl;
+
+
+        
+        // mergeInsertionSort(lst, 0, lst.size() - 1, 2);
         // std::cout << "After :  ";
         // for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
         //     std::cout << *it << " ";
         // clock_t end_lst = clock();
         // double elapsedTime_lst = static_cast<double>(end_lst - start_lst) / CLOCKS_PER_SEC;
         // std::cout << std::endl;
-        std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << std::fixed << std::setprecision(7) << elapsedTime_vec << std::endl;
+        // std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << std::fixed << std::setprecision(7) << elapsedTime_vec << std::endl;
 
         // std::cout << "Time to process a range of " << vec.size() << " elements with std::list   : " << elapsedTime_lst << std::endl;
     }

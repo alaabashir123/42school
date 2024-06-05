@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:25:28 by abashir           #+#    #+#             */
-/*   Updated: 2024/06/04 17:50:26 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/05 17:39:47 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void readInput(char **argv, int ac, std::list<int> &lst)
         }
     }
 }
+
 
 void sortPairs(std::vector<std::pair<int, int> >& pairs, size_t n) {
     if (n <= 1)
@@ -179,8 +180,9 @@ void insertPend(std::vector<int> pend, std::vector<int> &S, std::vector<int> ind
         int item = pend[indexes[i] - 1];
         std::vector<int>::iterator it =  bisearch(S, item);
         S.insert(it, item);
-    }   
+    }
 }
+
 std::vector<int> mergeInsertionSort(std::vector<int>& vec) 
 {
     int straggler;

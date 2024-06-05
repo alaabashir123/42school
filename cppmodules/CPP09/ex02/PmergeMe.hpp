@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:20:45 by abashir           #+#    #+#             */
-/*   Updated: 2024/06/04 13:22:55 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/05 17:47:20 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ void readInput(char **argv, int ac, std::vector<int> &vec);
 std::vector<int> mergeInsertionSort(std::vector<int> &vec);
 void mergeInsertionSort(std::list<int> &lst, size_t left, size_t right, size_t k);
 void print(std::vector<int> vec);
+std::list<int> mergeInsertionSort(std::list<int> &vec);
+void mergeInsertionSort(std::list<int> &lst, size_t left, size_t right, size_t k);
+void print(std::list<int> vec);
 
 #endif

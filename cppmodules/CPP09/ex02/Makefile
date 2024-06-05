@@ -6,19 +6,19 @@
 #    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 11:19:57 by abashir           #+#    #+#              #
-#    Updated: 2024/06/02 16:49:22 by abashir          ###   ########.fr        #
+#    Updated: 2024/06/05 17:46:08 by abashir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = PmergeMe
 
-SRC = main.cpp PmergeMe.cpp
+SRC = main.cpp PmergeMe_list.cpp PmergeMe.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 CXX = c++
 
-CXXFLAGS = -std=c++98 #-Wall -Wextra -Werror 
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror 
 
 all: $(NAME)
 
