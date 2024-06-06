@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:20:45 by abashir           #+#    #+#             */
-/*   Updated: 2024/06/05 17:47:20 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/06 13:43:54 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 #include <iostream>
 #include <sstream>
-#include <exception>
-#include <list>
-#include <vector>
+#include <string>
+#include <cctype>
 #include <cstdlib>
+#include <vector>
 #include <ctime>
-#include <cstring>
+#include <climits>
+#include <algorithm>
+#include <list>
 #include <utility>
 #include <iomanip>
+#include <cstring>
 
 class invalidInput : public std::exception
 {
@@ -36,11 +39,11 @@ bool checkInt(std::string input);
 void checkInput(char **argv, int ac);
 void readInput(char **argv, int ac, std::list<int> &lst);
 void readInput(char **argv, int ac, std::vector<int> &vec);
+void sortVector(char **argv, int ac);
+void sortList(char **argv, int ac);
 std::vector<int> mergeInsertionSort(std::vector<int> &vec);
-void mergeInsertionSort(std::list<int> &lst, size_t left, size_t right, size_t k);
+std::list<int> mergeInsertionSort(std::list<int> &lst);
 void print(std::vector<int> vec);
-std::list<int> mergeInsertionSort(std::list<int> &vec);
-void mergeInsertionSort(std::list<int> &lst, size_t left, size_t right, size_t k);
 void print(std::list<int> vec);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 15:35:13 by abashir           #+#    #+#             */
-/*   Updated: 2024/05/08 12:29:14 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/06 11:34:36 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ class BitcoinExchange
         std::multimap<std::string, std::string> _data;
         std::string _file;
         BitcoinExchange();
-    public:
-        BitcoinExchange(std::string file_name);
-        ~BitcoinExchange();
-        BitcoinExchange(const BitcoinExchange &copy);
-        BitcoinExchange &operator=(const BitcoinExchange &rhs);
         void getDatabase();
         void getUserData();
         void createPair(std::string line);
         void createResult();
         double interpolate(std::string &date_key);
         bool isLeapYear(int year);
+    public:
+        BitcoinExchange(std::string file_name);
+        ~BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange &copy);
+        BitcoinExchange &operator=(const BitcoinExchange &rhs);
 };
 #endif

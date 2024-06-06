@@ -6,7 +6,7 @@
 /*   By: abashir <abashir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:11:26 by abashir           #+#    #+#             */
-/*   Updated: 2024/05/08 12:36:27 by abashir          ###   ########.fr       */
+/*   Updated: 2024/06/06 12:09:40 by abashir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ class checkFile : public std::exception
     virtual const char * what() const throw()
     {
         return "Error: could not open file.";
+    }
+};
+
+class emptyFile : public std::exception
+{
+    virtual const char * what() const throw()
+    {
+        return "Error: File error.";
     }
 };
 
@@ -64,7 +72,7 @@ void BitcoinExchange::getDatabase()
         _database.insert(std::make_pair(date, std::atof(value.c_str())));
     }
     if (_database.empty())
-        throw checkFile();
+        throw emptyFile();
 }
 
 void BitcoinExchange::createPair(std::string line)
@@ -84,6 +92,7 @@ void BitcoinExchange::createPair(std::string line)
         _data.insert(std::make_pair(line, ""));
     }
 }
+
 void BitcoinExchange::getUserData()
 {
     std::string line;
@@ -101,7 +110,7 @@ void BitcoinExchange::getUserData()
         createPair(line);
     }
     if (_data.empty())
-        throw checkFile();
+        throw emptyFile();
 }
 
 bool checkInt(std::string input)
@@ -194,7 +203,7 @@ bool BitcoinExchange::isLeapYear(int year)
 }
 void BitcoinExchange::createResult()
 {
-    std::map<std::string, std::string>::iterator it;
+    std::multimap<std::string, std::string>::iterator it;
     int count;
     for (it = _data.begin(); it != _data.end(); it++) 
     {
@@ -209,7 +218,7 @@ void BitcoinExchange::createResult()
         std::string date[3] = {it->first.substr(0, 4), it->first.substr(5, 2), it->first.substr(8, 2)};
         if (exit_error(!checkInt(date[0]) || !checkInt(date[1]) || !checkInt(date[2]) || checkType(it->second), "Error: bad input => " + it->first))
             continue;
-        if (exit_error(std::atof(date[0].c_str()) < 2009 || std::atof(date[0].c_str()) > 2022 || std::atof(date[1].c_str()) < 1 || std::atof(date[1].c_str()) > 12 || std::atof(date[2].c_str()) < 1 || std::atof(date[2].c_str()) > 31, "Error: bad input => " + it->first))
+        if (exit_error(std::atof(date[1].c_str()) < 1 || std::atof(date[1].c_str()) > 12 || std::atof(date[2].c_str()) < 1 || std::atof(date[2].c_str()) > 31, "Error: bad input => " + it->first))
             continue;
         if (exit_error((std::atof(date[1].c_str()) == 4 || std::atof(date[1].c_str()) == 6 || std::atof(date[1].c_str()) == 9 || std::atof(date[1].c_str()) == 11) && std::atof(date[2].c_str()) > 30, "Error: bad input => " + it->first))
             continue;

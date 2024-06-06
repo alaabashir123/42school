@@ -6,13 +6,13 @@
 #    By: abashir <abashir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 11:19:57 by abashir           #+#    #+#              #
-#    Updated: 2024/06/05 17:46:08 by abashir          ###   ########.fr        #
+#    Updated: 2024/06/06 13:34:51 by abashir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = PmergeMe
 
-SRC = main.cpp PmergeMe_list.cpp PmergeMe.cpp
+SRC = main.cpp PmergeMe.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
